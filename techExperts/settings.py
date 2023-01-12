@@ -23,9 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0w)^59&9b1nrkf96^p&8q&-lbh*q18+z%)@2+-bf!lcr3#j#)5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,6 +40,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,10 +123,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATICFILES_DIRS is the list of folders where Django will search for additional static files
+# aside from the static folder of each app installed.
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+# media_is just a a name for how the images shall be shown in the url
+# for example
+# MEDIA_URL = '/images/x/y/z/'
+#  will show the image like http://127.0.0.1:8000/images/x/y/z/default.jpg
+MEDIA_URL = '/images/'
+
+# MEDIA_ROOT is the folder where files uploaded using FileField will go.
+# it tells django where to upload user generated content
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+
+# STATIC_ROOT is useless during development, it's only required for deployment.
+# While in development, STATIC_ROOT does nothing. You don't even need to set it.
+#  Django looks for static files inside each app's directory (myProject/appName/static)
+#  and serves them automatically.
+# This is the magic done by manage.py runserver when DEBUG=True.
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+DEBUG = True
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

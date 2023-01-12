@@ -1,7 +1,24 @@
 {% load static %}
-<nav>
-  <img src="{% static 'images/logo.svg'%}" alt="Tech Experts Logo">
-  <a href="{% url 'projects' %}">View All Projects</a> |
-  <a href="{% url 'create-project' %}">Create Project</a> |
-  <a href="admin/">Admin</a>
-</nav>
+<header class="header">
+  <div class="container container--narrow">
+    <a href="{% url 'projects' %}" class="header__logo">
+      <img src=" {% static 'images/logo.svg' %} " alt="TechExperts Logo" />
+    </a>
+    <nav class="header__nav">
+      <input type="checkbox" id="responsive-menu" />
+      <label for="responsive-menu" class="toggle-menu">
+        <span>Menu</span>
+        <div class="toggle-menu__lines"></div>
+      </label>
+      <ul class="header__menu">
+        <li class="header__menuItem"><a href="{% url 'create-project' %}" >Create Project</a></li>
+       
+        <li class="header__menuItem"><a href="">Developers</a></li>
+        <li class="header__menuItem"><a href="{% url 'projects' %}">Projects</a></li>
+        <li class="header__menuItem"><a href="">Inbox</a></li>       
+        <li class="header__menuItem"><a href="" class="btn btn--sub">Login/Sign Up</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
