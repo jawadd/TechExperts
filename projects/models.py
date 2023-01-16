@@ -1,9 +1,11 @@
 from django.db import models
 import uuid
+
 # Create your models here.
 
 
 class Project(models.Model):
+
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     featured_image = models.ImageField(
@@ -18,7 +20,7 @@ class Project(models.Model):
                           primary_key=True, editable=False)
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
 
 class Review(models.Model):
