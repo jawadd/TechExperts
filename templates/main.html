@@ -18,7 +18,17 @@
     <title>Tech Experts!</title>
   </head>
   <body>
-    {% include 'nav.html' %} {% block content %} {% endblock content %}
+    
+    {% include 'nav.html' %} 
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+    {% endif %}
+
+    {% block content %} {% endblock content %}
   </body>
 
   <footer></footer>
