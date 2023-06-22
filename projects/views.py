@@ -9,14 +9,14 @@ from django.contrib.auth.decorators import login_required
 def projects(request):
     projects = Project.objects.all()
     context = {'projects': projects}
-    return render(request, 'projects.html', context)
+    return render(request, 'projects/projects.html', context)
 
 
 def project(request, pk):
     projecObj = Project.objects.get(id=pk)
 
     context = {'project': projecObj}
-    return render(request, 'singleProject.html', context)
+    return render(request, 'projects/singleProject.html', context)
 
 
 @login_required(login_url='login')
@@ -28,7 +28,7 @@ def createProject(request):
             form.save()
             return redirect('projects')
     context = {'form': form}
-    return render(request, 'project_form.html', context)
+    return render(request, 'projects/project_form.html', context)
 
 
 @login_required(login_url='login')
