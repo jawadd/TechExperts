@@ -19,7 +19,7 @@ def registerUser(request):
             login(request,user)
             return redirect('profiles')
         else:
-            messages.error(request,'error creating account')
+            messages.error(request,'Error creating account')
     context = {'page':page,'form':form}
     return render(request, 'users/login-register.html',context)
 
@@ -45,7 +45,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    messages.error(request, "Logged out ")
+    messages.info(request, "Logged out ")
     return redirect('login')
 
 
